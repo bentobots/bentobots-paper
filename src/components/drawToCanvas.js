@@ -1,32 +1,65 @@
+import React from 'react'
 import paper from 'paper'
 
-const implementation = ({ CANVAS_ID, PATHS } = {}) => {
-  var canvas = document.getElementById(CANVAS_ID)
-  paper.setup(canvas)
-  let path
-  if (PATHS[0] && Array.isArray(PATHS[0])) {
-    console.log('MULTI', PATHS)
-    PATHS.map(PATH => {
-      path = new paper.Path()
-      path.importJSON(PATH)
-    })
-  } else {
-    console.log('SINGLE', PATHS)
-    path = new paper.Path()
-    path.importJSON(PATHS)
+const implementation = ({ PATHS, UNITE = true } = {}) => {
+  return { PARSED_PATHS: PATHS }
+  // var canvas = document.getElementById(CANVAS_ID)
+  // paper.setup(canvas)
+  // let path
+  // if (PATHS[0] && Array.isArray(PATHS[0])) {
+  //   PATHS.map(PATH => {
+  //     path = new paper.Path()
+  //     path.importJSON(PATH)
+  //   })
+  // } else {
+  //   path = new paper.Path()
+  //   path.importJSON(PATHS)
+  // }
+  // paper.view.draw()x
+}
+
+class UI extends React.Component {
+  constructor (props) {
+    super(props)
+    this.canvasID = `${this.props.id}-canvas`
   }
-  // paper.view.draw()
+  componentDidUpdate (prevProps, prevState) {
+    paper.setup(this.canvasID)
+    // var project = new paper.Project()
+
+    let path
+    const PATHS = this.props.outputs.PARSED_PATHS
+    if (PATHS[0] && Array.isArray(PATHS[0])) {
+      PATHS.map(PATH => {
+        // path = new paper.Path()
+        path = new paper[PATH[0]]()
+        project.importJSON(PATH)
+      })
+    } else {
+      // path = new paper.Path()
+      path = new paper[PATHS[0]]()
+      path.importJSON(PATHS)
+    }
+  }
+  render () {
+    return (<div>
+      <canvas id={this.canvasID} width={300} height={300} />
+    </div>)
+  }
 }
 
 const spec = {
   name: 'Draw to canvas',
   description: 'draws to canvas',
   implementation,
+  ui: {
+    component: <UI state={{id: 'canvas'}} />
+  },
   inputs: {
-    PATHS: {},
-    CANVAS_ID: {}
+    PATHS: {}
   },
   outputs: {
+    PARSED_PATHS: {}
   }
 }
 
