@@ -1,3 +1,4 @@
+export { default as drawToCanvas } from './components/drawToCanvas'
 // export { default as exportSVG } from './components/exportSVG'
 export { default as fill } from './components/fill'
 export { default as path } from './components/path'

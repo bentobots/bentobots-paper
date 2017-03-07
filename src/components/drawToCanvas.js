@@ -1,10 +1,11 @@
 import paper from 'paper'
 
-const implementation = ({ ELEMENT_ID, PATHS } = {}) => {
-  var canvas = document.getElementById(ELEMENT_ID)
+const implementation = ({ CANVAS_ID, PATHS } = {}) => {
+  var canvas = document.getElementById(CANVAS_ID)
   paper.setup(canvas)
-  project.importJSON(PATHS)
-  paper.view.draw()
+  var path = new paper.Path()
+  path.importJSON(PATHS)
+  // paper.view.draw()
 }
 
 const spec = {
