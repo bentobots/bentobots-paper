@@ -3,19 +3,6 @@ import paper from 'paper'
 
 const implementation = ({ PATHS, UNITE = true } = {}) => {
   return { PARSED_PATHS: PATHS }
-  // var canvas = document.getElementById(CANVAS_ID)
-  // paper.setup(canvas)
-  // let path
-  // if (PATHS[0] && Array.isArray(PATHS[0])) {
-  //   PATHS.map(PATH => {
-  //     path = new paper.Path()
-  //     path.importJSON(PATH)
-  //   })
-  // } else {
-  //   path = new paper.Path()
-  //   path.importJSON(PATHS)
-  // }
-  // paper.view.draw()x
 }
 
 class UI extends React.Component {
